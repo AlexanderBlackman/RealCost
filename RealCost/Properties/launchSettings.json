@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "RealCost (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "RealCost (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

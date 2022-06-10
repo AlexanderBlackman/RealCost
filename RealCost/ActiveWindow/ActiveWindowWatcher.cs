@@ -1,20 +1,33 @@
-﻿using RealCost.Helpers;
+﻿using Microsoft.UI.Xaml;
+using RealCost.Helpers;
 
 namespace RealCost.ActiveWindow
 {
     public class ActiveWindowWatcher
     {
-        private System.Timers.Timer stateTimer;
+        private DispatcherTimer stateTimer;
+
+
+
+
         private ActiveWindowModel currentActiveWindow = ActiveWindowModel.CreateEmpty();
         public event EventHandler<ActiveWindowChangedEventArgs> ActiveWindowChanged;
 
         public ActiveWindowWatcher(TimeSpan interval)
         {
-            stateTimer = new System.Timers.Timer(interval.TotalMilliseconds);
-            stateTimer.Elapsed += (o, e) => GetActiveWindow();
+            stateTimer = new DispatcherTimer();
+            stateTimer.Interval = interval;
+            stateTimer.Tick += StateTimer_Tick;
+
+
         }
 
-        public void Start() => stateTimer.Start(GetActiveWindow);
+        private void StateTimer_Tick(object sender, object e)
+        {
+            GetActiveWindow();
+        }
+
+        public void Start() => stateTimer.Start();
         public void Stop() => stateTimer.Stop();
 
         private void GetActiveWindow() =>

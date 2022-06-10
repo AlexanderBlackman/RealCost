@@ -25,10 +25,10 @@ namespace RealCost
             IsTitleBarVisible = false;
             IsMinimizable = false;
             IsMaximizable = false;
-            //IsAlwaysOnTop = true;
+            IsAlwaysOnTop = true;
 
-            //watcher.ActiveWindowChanged += (o, e) => CurrentActiveWindowString = $"{e.ActiveWindow}";
-            //watcher.Start();
+            watcher.ActiveWindowChanged += (o, e) => CurrentActiveWindowString = $"{e.ActiveWindow}";
+            watcher.Start();
 
 
 

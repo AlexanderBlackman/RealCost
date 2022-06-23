@@ -18,7 +18,9 @@ namespace RealCost
 
         public MainWindow()
         {
-            var watcher = new ActiveWindowWatcher(TimeSpan.FromMilliseconds(500));
+            //var watcher = new ActiveWindowWatcher(TimeSpan.FromMilliseconds(500));
+            var watcher = new PeriodicWindowWatcher(TimeSpan.FromMilliseconds(500));
+
             this.InitializeComponent();
             Title = "DiptyDoh";
             this.ExtendsContentIntoTitleBar = true;
@@ -28,7 +30,7 @@ namespace RealCost
             IsAlwaysOnTop = true;
 
             watcher.ActiveWindowChanged += (o, e) => CurrentActiveWindowString = $"{e.ActiveWindow}";
-            watcher.Start();
+            //watcher.Start();
 
 
 
